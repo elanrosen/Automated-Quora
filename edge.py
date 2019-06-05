@@ -4,6 +4,7 @@ email = 'surfer.zoke@gmail.com' ##inputs for account
 password = 'Burrito1'
 browser = webdriver.Edge("MicrosoftWebDriver.exe") ##loads driver
 browser.implicitly_wait(5)
+count = 0
 
 def login():
     browser.get('http://www.quora.com')
@@ -15,21 +16,13 @@ def login():
     login = browser.find_element_by_class_name('submit_button ignore_interaction')
     login.click()  # logs in
 
-def setting_up_request():
+def setting():
     browser.get('https://www.quora.com/profile/Tom-Pierre-1/questions')  # heads to question page
 
     profile_counts = browser.find_elements_by_class_name('list_count')
     question_count = int(profile_counts[1].text)
-    for i in range(0, question_count):
-        '''if i==0:
-            questions[(i)].click()
-        else:
-            questions = browser.find_elements_by_class_name('ui_content_title ui_content_title--default ui_content_title--medium')  ##adds new questions to list
-            browser.execute_script("arguments[0].scrollIntoView(true);", questions[(i - 1)])
-            time.sleep(.5)
-            questions = browser.find_elements_by_class_name('ui_content_title ui_content_title--default ui_content_title--medium')  ##adds new questions to list
-            print(questions[i].text)
-            questions[(i)].click()'''
+    for i in range(5, question_count):
+
         questions = browser.find_elements_by_class_name('ui_content_title ui_content_title--default ui_content_title--medium')
         while i >= len(questions):
             browser.execute_script('window.scrollBy(0, 110)')
@@ -38,14 +31,12 @@ def setting_up_request():
 
         questions[(i)].click()
         questionPage = browser.window_handles[1] ##changes browser tab
-        browser.close()
         browser.switch_to.window(questionPage)
-
-        '''request = browser.find_element_by_id('request')
+        request = browser.find_element_by_id('request')
         request.click()
-        time.sleep(1)'''
-        browser.get('https://www.quora.com/profile/Tom-Pierre-1/questions')  # heads to question page
-
+        requesting()
+        browser.close()
+        browser.switch_to.window(browser.window_handles[0]) # heads back to question page
 
 def requesting():
     buttons = browser.find_elements_by_class_name('u-flex-none u-relative u-flex-align-self--center button_wrapper')
@@ -54,19 +45,20 @@ def requesting():
     if buttoncount > 50:
         buttoncount = 50
 
-    for x in range(0, buttoncount):
-        browser.execute_script("arguments[0].scrollIntoView(true);", users[(x)])
+    for x in range(0, buttoncount, 2):
+        browser.execute_script("arguments[0].scrollIntoView(true);", buttons[(x)])
         buttons[x].click()  ##must be even for whatever reason
-        print('Requested ' + users[x].text)
-        x += 2
+        global count
+        count +=1
+        print('Requested ' + users[x].text + ' ' + str(count))
+
 
 def submit():
     submit = browser.find_elements_by_class_name('submit_button modal_action')
     submit[2].click()
 
 login()
-setting_up_request()
-requesting()
+setting()
 
 
 
