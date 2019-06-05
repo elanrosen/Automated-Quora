@@ -39,10 +39,13 @@ def setting():
 
 def requesting():
     request = browser.find_elements_by_id('request') #Even though there is only one requets element will be present, array is returned so that it can be counted to determine whether request is present. Selenium does not allow to check for single element without returning error
-    while (len(request)!=0): #runs loop as long as request is still visible
-        request[0].click()
+    while (len(request) == 0): #runs loop as long as request is still visible
         request = browser.find_elements_by_id('request')
-    time.sleep(.3)
+        print('looking')
+    print('found')
+    request[0].click()
+    print('clicked')
+    time.sleep(1)
     buttons = browser.find_elements_by_class_name('u-flex-none u-relative u-flex-align-self--center button_wrapper')
     users = browser.find_elements_by_class_name('user')  # to look cool shows names and stuff
     buttoncount = len(buttons)
@@ -54,14 +57,13 @@ def requesting():
         buttons[x].click()  ##must be even for whatever reason
         global count
         count +=1
-        print('Requested ' + users[x].text + ' ' + str(count))
+        print(str(count))
 
 
 def submit():
     submit = browser.find_elements_by_class_name('submit_button modal_action')
     submit[2].click()
 
-login()
 setting()
 
 
