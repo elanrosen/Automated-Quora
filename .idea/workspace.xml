@@ -13,10 +13,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/edge.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+            <state relative-caret-position="168">
+              <caret line="45" column="27" lean-forward="true" selection-start-line="45" selection-end-line="46" />
               <folding>
+                <element signature="e#0#30#0" expanded="true" />
                 <element signature="e#203#568#0" />
+                <element signature="e#2225#2321#0" />
               </folding>
             </state>
           </provider>
@@ -221,10 +223,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/edge.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+        <state relative-caret-position="168">
+          <caret line="45" column="27" lean-forward="true" selection-start-line="45" selection-end-line="46" />
           <folding>
+            <element signature="e#0#30#0" expanded="true" />
             <element signature="e#203#568#0" />
+            <element signature="e#2225#2321#0" />
           </folding>
         </state>
       </provider>
