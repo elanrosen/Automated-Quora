@@ -7,6 +7,24 @@ browser = webdriver.Edge("MicrosoftWebDriver.exe") ##loads driver
 browser.implicitly_wait(5)
 count = 0
 
+'''''
+Functions used for Testting
+'''''
+def question_page():
+    browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##loads driver
+    browser.implicitly_wait(5)
+    browser.get('https://www.quora.com/profile/Tom-Pierre-1/questions')  # heads to question page
+
+def question1():##no requests left
+    browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##loads driver
+    browser.implicitly_wait(5)
+    browser.get('https://www.quora.com/How-do-I-know-if-my-kid-drinks')
+
+def question2():
+    browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##loads driver
+    browser.implicitly_wait(5)
+    browser.get('https://www.quora.com/unanswered/Who-is-the-gayest-straight-person-you-have-ever-met')
+
 def login():
     browser.get('http://www.quora.com')
 
@@ -16,6 +34,7 @@ def login():
 
     login = browser.find_element_by_class_name('submit_button ignore_interaction')
     login.click()  # logs in
+
 
 def setting():
     browser.get('https://www.quora.com/profile/Tom-Pierre-1/questions')  # heads to question page
@@ -39,15 +58,26 @@ def setting():
 
 def requesting():
     request = browser.find_elements_by_id('request') #Even though there is only one requets element will be present, array is returned so that it can be counted to determine whether request is present. Selenium does not allow to check for single element without returning error
-    while (len(request) == 0): #runs loop as long as request is still visible
+    while len(request) == 0: #runs loop as long as request is still visible
         request = browser.find_elements_by_id('request')
         print('looking')
     print('found')
     request[0].click()
     print('clicked')
-    time.sleep(1)
+    submit = browser.find_elements_by_class_name('submit_button modal_action')
+    while (len(submit) == 0):## make sure request screen is loaded
+        request[0].click()
+        submit = browser.find_elements_by_class_name('submit_button modal_action')
+        print('click')
+    #users = browser.find_elements_by_class_name('user')  # to look cool shows names and stuff
+    no_requests_left = browser.find_elements_by_class_name('u-sans-font-main--large u-font-weight--bold u-margin-bottom--sm')
+    if len(no_requests_left) != 0: ##if no more requests screen exists end requests
+        return
+    i = 0
     buttons = browser.find_elements_by_class_name('u-flex-none u-relative u-flex-align-self--center button_wrapper')
-    users = browser.find_elements_by_class_name('user')  # to look cool shows names and stuff
+    while len(buttons) < 50 or i == 150:
+        time.sleep(.01)
+        buttons = browser.find_elements_by_class_name('u-flex-none u-relative u-flex-align-self--center button_wrapper')
     buttoncount = len(buttons)
     if buttoncount > 50:
         buttoncount = 50
