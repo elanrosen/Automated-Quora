@@ -3,29 +3,23 @@ import time
 
 email = 'surfer.zoke@gmail.com' ##inputs for account
 password = 'Burrito1'
-browser = webdriver.Edge("MicrosoftWebDriver.exe") ##loads driver
-browser.implicitly_wait(5)
 count = 0
-
+browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##intiates browser variable
+browser.implicitly_wait(5)
 '''''
 Functions used for Testting
 '''''
-def question_page():
-    browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##loads driver
-    browser.implicitly_wait(5)
+
+def question_page():##goes to question page
     browser.get('https://www.quora.com/profile/Tom-Pierre-1/questions')  # heads to question page
 
-def question1():##no requests left
-    browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##loads driver
-    browser.implicitly_wait(5)
+def question1():##test set up for unrequested function
     browser.get('https://www.quora.com/How-do-I-know-if-my-kid-drinks')
 
-def question2():
-    browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##loads driver
-    browser.implicitly_wait(5)
+def question2(): ##test set up for already requested function
     browser.get('https://www.quora.com/unanswered/Who-is-the-gayest-straight-person-you-have-ever-met')
 
-def login():
+def login(): ##login to Quora --- not always necassary
     browser.get('http://www.quora.com')
 
     fields = browser.find_elements_by_class_name("text header_login_text_box ignore_interaction")  # selects the login text fields
@@ -36,7 +30,8 @@ def login():
     login.click()  # logs in
 
 
-def setting():
+def setting(): ##main function for requesting loop
+    question_page()
     browser.get('https://www.quora.com/profile/Tom-Pierre-1/questions')  # heads to question page
 
     profile_counts = browser.find_elements_by_class_name('list_count')
@@ -56,7 +51,7 @@ def setting():
         browser.close()
         browser.switch_to.window(browser.window_handles[0]) # heads back to question page
 
-def requesting():
+def requesting(): ##controls each set of requests per question
     request = browser.find_elements_by_id('request') #Even though there is only one requets element will be present, array is returned so that it can be counted to determine whether request is present. Selenium does not allow to check for single element without returning error
     while len(request) == 0: #runs loop as long as request is still visible
         request = browser.find_elements_by_id('request')
@@ -93,10 +88,4 @@ def requesting():
 def submit():
     submit = browser.find_elements_by_class_name('submit_button modal_action')
     submit[2].click()
-
-setting()
-
-
-
-
 
