@@ -30,13 +30,13 @@ def login(): ##login to Quora --- not always necassary
     login.click()  # logs in
 
 
-def setting(): ##main function for requesting loop
+def setting(): ##main function for iterating through questions and requesting
     question_page()
     browser.get('https://www.quora.com/profile/Tom-Pierre-1/questions')  # heads to question page
 
-    profile_counts = browser.find_elements_by_class_name('list_count')
+    profile_counts = browser.find_elements_by_class_name('list_count')##finds number of questions on profile
     question_count = int(profile_counts[1].text)
-    for i in range(1, 5):#normally question_count
+    for i in range(1, question_count):#iterates through questions
 
         questions = browser.find_elements_by_class_name('ui_content_title ui_content_title--default ui_content_title--medium')
         while i >= len(questions):
@@ -47,7 +47,7 @@ def setting(): ##main function for requesting loop
         questions[(i)].click()
         questionPage = browser.window_handles[1] ##changes browser tab
         browser.switch_to.window(questionPage)
-        requesting()
+        ##requesting() #function for requesting
         browser.close()
         browser.switch_to.window(browser.window_handles[0]) # heads back to question page
 
