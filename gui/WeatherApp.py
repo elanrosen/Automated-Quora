@@ -20,4 +20,3 @@ entry = tk.Entry(frame, bg='green')
 entry.grid(row=0, column=0)
 
 root.mainloop()
- 
