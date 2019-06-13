@@ -16,7 +16,7 @@ button.grid(row=0, column=0)
 label = tk.Label(frame, text='This is a label', bg='yellow')
 label.grid(row=0, column=1)
 
-entry = tk.Entry(frame, bg='green')
+entry = tk.Entry(frame, bg='green')#dfdfdfdfdsfsfefesfdsffefesfesfefesfefsfs
 entry.grid(row=0, column=0)
 
 root.mainloop()
