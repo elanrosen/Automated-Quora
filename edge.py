@@ -47,7 +47,7 @@ def setting(): ##main function for iterating through questions and requesting
         questions[(i)].click()
         questionPage = browser.window_handles[1] ##changes browser tab
         browser.switch_to.window(questionPage)
-        ##requesting() #function for requesting
+        requesting() #function for requesting
         browser.close()
         browser.switch_to.window(browser.window_handles[0]) # heads back to question page
 
