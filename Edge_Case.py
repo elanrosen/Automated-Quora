@@ -1,8 +1,8 @@
 from selenium import webdriver
 import time
 
-email = 'surfer.zoke@gmail.com' ##inputs for account
-password = 'Burrito1'
+email = '************' ##inputs for account
+password = '************'
 count = 0
 browser = webdriver.Edge("MicrosoftWebDriver.exe")  ##intiates browser variable
 browser.implicitly_wait(5)
